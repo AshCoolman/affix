@@ -5,7 +5,7 @@
   "main": "dist/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "node_modules/coffee-script/bin/coffee -o dist/ -c src/"
+    "postinstall": "sh ./shell/transpile.sh"
   },
   "repository": {
     "type": "git",
