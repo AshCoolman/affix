@@ -1,0 +1,32 @@
+{
+  "name": "affix",
+  "version": "1.0.6",
+  "description": "Wires fixture data to test specs as the tests are defined",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "node_modules/coffee-script/bin/coffee -o dist/ -c src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/AshCoolman/affix.git"
+  },
+  "keywords": [
+    "mocha",
+    "jasmine",
+    "testing",
+    "javascript",
+    "coffeescript"
+  ],
+  "author": "Ashley Coleman <writetofish@gmail.com> (http://ashcoolman.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AshCoolman/affix/issues"
+  },
+  "homepage": "https://github.com/AshCoolman/affix#readme",
+  "devDependencies": {
+    "coffee-script": "^1.9.3"
+  }
+}
+
+  
