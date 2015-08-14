@@ -33,6 +33,9 @@
 ###
 module.exports = (fixtures) ->
 
+    if 'undefined, number, string, boolean'.indexOf(typeof fixtures) isnt -1
+        throw new Error "Expecting non-primative fixtures argument, instead got #{fixtures}"
+
     fixture = null
 
     ###*

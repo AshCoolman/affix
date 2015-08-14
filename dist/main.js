@@ -37,6 +37,9 @@
 (function() {
   module.exports = function(fixtures) {
     var bind, fixture, set;
+    if ('undefined, number, string, boolean'.indexOf(typeof fixtures) !== -1) {
+      throw new Error("Expecting non-primative fixtures argument, instead got " + fixtures);
+    }
     fixture = null;
 
     /**
