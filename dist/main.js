@@ -50,7 +50,6 @@
      */
     set = (function(_this) {
       return function(name) {
-        console.log('Affix set:' + name, fixture[name]);
         fixture = fixtures[name];
         return name;
       };
@@ -64,7 +63,6 @@
      */
     bind = (function(_this) {
       return function(fn) {
-        console.log('Affix bind');
         return fn.bind({
           fixture: fixture
         });

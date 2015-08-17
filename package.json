@@ -1,11 +1,12 @@
 {
   "name": "affix",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Wires fixture data to test specs as the tests are defined",
   "main": "dist/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pre-publish": "node_modules/coffee-script/bin/coffee -o dist/ -c src/"
+    "pre-publish": "./node_modules/coffee-script/bin/coffee -o dist/ -c src/",
+    "prepublish": "./node_modules/coffee-script/bin/coffee -o dist/ -c src/"
   },
   "repository": {
     "type": "git",
