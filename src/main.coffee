@@ -45,7 +45,6 @@ module.exports = (fixtures) ->
      * @return {[type]}      [description]
     ###
     set = (name) =>
-        console.log 'Affix set:' + name, fixture[name]
         fixture = fixtures[name]
         name
 
@@ -56,7 +55,6 @@ module.exports = (fixtures) ->
      * @return {Function}      Input function, bound to the active fixture
     ###
     bind = (fn) =>
-        console.log 'Affix bind'
         fn.bind { fixture }
 
     { set, bind }
