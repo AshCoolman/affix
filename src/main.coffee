@@ -39,7 +39,9 @@ module.exports = (fixtures) ->
     fixture = null
 
     ###*
-     * This is a  "T-pipe" function, ( analogy to the T-shaped plumbing pipe ). It takes one input, pipes the output, but also uses the input to set the "active" fixture.
+     * Sets the "cursor" to the wanted fixture, and returns the name unmutated.
+     * 
+     * Note: This is a  "T-pipe" function, ( analogy to the T-shaped plumbing pipe ) - it takes one input, pipes uses the input to do (unmutating work) and for output
      * 
      * @param  {[type]} name [Piped]
      * @return {[type]}      [description]
@@ -49,7 +51,7 @@ module.exports = (fixtures) ->
         name
 
     ###*
-     * `bind` test fixture data to test function so it is available `this.fixture`
+     * `bind` test fixture data to test function so it is available via `this.fixture`
      * 
      * @param  {Function} fn Statements that make assertions (using the test framework)
      * @return {Function}      Input function, bound to the active fixture
