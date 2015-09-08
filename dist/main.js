@@ -36,7 +36,7 @@
 
 (function() {
   module.exports = function(fixtures) {
-    var bind, fixture, set;
+    var bind, fixture, set, setBind;
     if ('undefined, number, string, boolean'.indexOf(typeof fixtures) !== -1) {
       throw new Error("Expecting non-primative fixtures argument, instead got " + fixtures);
     }
@@ -68,6 +68,20 @@
         return fn.bind({
           fixture: fixture
         });
+      };
+    })(this);
+
+    /**
+     * Convieniance function. `set` and `bind` in one
+     *
+     * @param  {String} key     Optional: Key to sets the "cursor" to the wanted fixture (else falls back to last set)
+     * @param  {Function} fn Statements that make assertions (using the test framework)
+     * @return {Function}      Input function, bound to the active fixture
+     */
+    setBind = (function(_this) {
+      return function(key, fn) {
+        set(arguments[0]);
+        return bind(arguments[1]);
       };
     })(this);
     return {

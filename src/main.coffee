@@ -59,4 +59,16 @@ module.exports = (fixtures) ->
     bind = (fn) =>
         fn.bind { fixture }
 
+
+    ###*
+     * Convieniance function. `set` and `bind` in one
+     *
+     * @param  {String} key     Optional: Key to sets the "cursor" to the wanted fixture (else falls back to last set)
+     * @param  {Function} fn Statements that make assertions (using the test framework)
+     * @return {Function}      Input function, bound to the active fixture
+    ###
+    setBind = (key, fn) =>
+        set arguments[0]
+        bind arguments[1]
+
     { set, bind }
