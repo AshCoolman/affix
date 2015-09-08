@@ -1,6 +1,6 @@
 {
   "name": "affix",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Wires fixture data to test specs as the tests are defined",
   "main": "dist/main.js",
   "scripts": {

@@ -71,4 +71,4 @@ module.exports = (fixtures) ->
         set arguments[0]
         bind arguments[1]
 
-    { set, bind }
+    { set, bind, setBind }

@@ -86,7 +86,8 @@
     })(this);
     return {
       set: set,
-      bind: bind
+      bind: bind,
+      setBind: setBind
     };
   };
 
