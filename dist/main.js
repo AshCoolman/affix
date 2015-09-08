@@ -80,8 +80,8 @@
      */
     setBind = (function(_this) {
       return function(key, fn) {
-        set(arguments[0]);
-        return bind(arguments[1]);
+        set(key);
+        return bind(fn);
       };
     })(this);
     return {

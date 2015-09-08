@@ -68,7 +68,7 @@ module.exports = (fixtures) ->
      * @return {Function}      Input function, bound to the active fixture
     ###
     setBind = (key, fn) =>
-        set arguments[0]
-        bind arguments[1]
+        set key
+        bind fn
 
     { set, bind, setBind }
