@@ -1,10 +1,10 @@
 {
   "name": "affix",
-  "version": "1.0.11",
+  "version": "1.0.13",
   "description": "Wires fixture data to test specs as the tests are defined",
   "main": "dist/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "coffee test/test.coffee",
     "prepublish": "./node_modules/coffee-script/bin/coffee -o dist/ -c src/"
   },
   "repository": {
@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/AshCoolman/affix#readme",
   "devDependencies": {
-    "coffee-script": "^1.9.3"
+    "coffee-script": "^1.9.3",
+    "should": "^7.1.0",
+    "simple-ansi": "0.0.1"
   }
 }

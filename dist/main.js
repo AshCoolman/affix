@@ -3,20 +3,24 @@
 /**
  * _Without doing anything drastic_, this object lets you wire fixtures to test specs at _test definition time_. It works well with testing frameworks that use fluid APIs (like mocha or Jasmine).
  *
+ * Practically speaking, this module gives you a configurable way to `bind` functions that on occasion is more expressive than the regular `Function.prototype.bind` syntax.
+ *
  * It was originally used for keyhole refactoring of some large test files, thus it is super-simple and non-invasive.
+ *
  *
  * 
  * e.g.
  *
- * in-is-out.fixtures.coffee:
+ * the-test.fixtures.coffee:
  * 
  *     module.exports =
- *         'should be the answer to everything':
- *             inp: 40 + 2
- *             out: 42
+ *         beforeEach: 'What is the answer to everything?'
+ *         'should equal the answer to everything':
+ *             input: [40, 2]
+ *             expected: 42
  *     
  * 
- * in-is-out.spec.coffee:
+ * the-test.spec.coffee:
  *     
  * 
  *     fixtures = require "#{dirname}/in-is-out.fixtures"
@@ -26,34 +30,50 @@
  *
  *     
  *     describe 'GET /v2/websites/:website_id/sales/kpi', =>
- *     
- *         it affix.set('should be the answer to everything'), affix.bind (done) ->
+ *         beforeEach affix.bindSet 'beforeEach', (done) ->
+ *             console.log @fixture
+ *             done()
  *         
- *             { inp, out } = @fixture
- *             inp.should.be.exactly out
+ *         it affix.set('should be the answer to everything'), affix.bind (done) ->
+ *             { input, expected } = @fixture
+ *             actual = input[0] + input[1]
+ *             actual.should.be.exactly expected
  *
  */
 
 (function() {
   module.exports = function(fixtures) {
-    var bind, fixture, set, setBind;
+    var bind, config, fixture, fixtureKey, set, setBind;
     if ('undefined, number, string, boolean'.indexOf(typeof fixtures) !== -1) {
       throw new Error("Expecting non-primative fixtures argument, instead got " + fixtures);
     }
     fixture = null;
+    fixtureKey = null;
 
     /**
-     * Sets the "cursor" to the wanted fixture, and returns the name unmutated.
+     * Set the fixture data that `set` points to
      * 
-     * Note: This is a  "T-pipe" function, ( analogy to the T-shaped plumbing pipe ) - it takes one input, pipes uses the input to do (unmutating work) and for output
+     * @param  {Object} obj the object whose key values are bound to `this.fixture`
+     */
+    config = (function(_this) {
+      return function(obj) {
+        return fixtures = obj;
+      };
+    })(this);
+
+    /**
+     * Sets the "cursor" to the wanted fixture, and returns the key unmutated.
+     * It takes one input, pipes uses the input to do (unmutating work) and for output
      * 
-     * @param  {[type]} name [Piped]
+     * Note: This is a  "T-pipe" function, ( analogy to the T-shaped plumbing pipe )
+     * 
+     * @param  {[type]} key [Piped]
      * @return {[type]}      [description]
      */
     set = (function(_this) {
-      return function(name) {
-        fixture = fixtures[name];
-        return name;
+      return function(key) {
+        fixtureKey = key;
+        return key;
       };
     })(this);
 
@@ -66,7 +86,7 @@
     bind = (function(_this) {
       return function(fn) {
         return fn.bind({
-          fixture: fixture
+          fixture: fixtures[fixtureKey]
         });
       };
     })(this);
@@ -87,7 +107,8 @@
     return {
       set: set,
       bind: bind,
-      setBind: setBind
+      setBind: setBind,
+      config: config
     };
   };
 
