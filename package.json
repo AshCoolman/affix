@@ -28,5 +28,6 @@
     "coffee-script": "^1.9.3",
     "should": "^7.1.0",
     "simple-ansi": "0.0.1"
-  }
+  },
+  "tonicExampleFilename": "test/tonicExample.js"
 }
